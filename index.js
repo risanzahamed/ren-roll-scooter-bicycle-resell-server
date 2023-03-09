@@ -3,7 +3,8 @@ const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 
-const stripe = require("stripe")("sk_test_51MjjX9BnHYhj3RHAEenWA3QvQIlmNFs8tr7JOFKwhMGxIheV3WfsqSdZJMg0souWSx90jjo3kYNCQKGQOoXrG7F500krN2BANI");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
+
 
 
 // const jwt = require('jsonwebtoken');
@@ -162,13 +163,28 @@ async function run() {
         })
 
 
-        app.get('/booking/:id', async (req, res) => {
+        // app.get('/book-product/:id', async (req, res) => {
+        //     const id = req.params.id
+
+        //     const query = { _id: new ObjectId(id) }
+
+        //     const result = await productAddToCartCollection.findOne(query)
+        //     res.send(result)
+        // })
+
+        // app.get('/book-product', async (req, res) => {
+        //     const query = {}
+        //     const cursor = productAddToCartCollection.find(query)
+        //     const service = await cursor.toArray()
+        //     res.send(service)
+        // })
+
+
+        app.get('/book-product/:id', async (req, res) => {
             const id = req.params.id
-
-            const query = { _id: new ObjectId(id) }
-
-            const result = await productAddToCartCollection.findOne(query)
-            res.send(result)
+            const query = { _id : new ObjectId(id)}
+            const product = await productAddToCartCollection.findOne(query)
+            res.send(product)
         })
 
 
