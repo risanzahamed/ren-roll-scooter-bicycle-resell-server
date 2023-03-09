@@ -41,26 +41,25 @@ async function run() {
         // const sellerCollection = client.db('rentRoll').collection('seller')
         // const customerCollection = client.db('rentRoll').collection('customer')
         const paymentCollection = client.db('rentRoll').collection('payment')
-
         const addProductCollection = client.db('rentRoll').collection('addProduct')
         // const advertiseCollection = client.db('rentRoll').collection('advertiseItem')
 
 
 
-        // app.post('/payment', async(req, res)=>{
-        //     const payment = req.body
-        //     const result = paymentCollection.insertOne(payment)
-        //     const _id = payment.bookingId
-        //     const filter = {_id : ObjectId(_id)}
-        //     const updatedDoc = {
-        //         $set:{
-        //             paid: true,
-        //             transactionId: payment.transactionId
-        //         }
-        //     }
-        //     const updatedResult = await paymentCollection.updateOne(filter, updatedDoc)
-        //     res.send(result)
-        // })
+        app.post('/payment', async(req, res)=>{
+            const payment = req.body
+            const result = paymentCollection.insertOne(payment)
+            const _id = payment.bookingId
+            const filter = {_id : ObjectId(_id)}
+            const updatedDoc = {
+                $set:{
+                    paid: true,
+                    transactionId: payment.transactionId
+                }
+            }
+            const updatedResult = await productAddToCartCollection.updateOne(filter, updatedDoc)
+            res.send(result)
+        })
 
 
         // // JWT CODE
@@ -244,8 +243,8 @@ async function run() {
 
 
         app.post("/create-payment-intent", async (req, res) => {
-            const productBooked = req.body;
-            const price = productBooked.price
+            const carbooking = req.body;
+            const price = carbooking.price
             const amount = price * 100
 
             const paymentIntent = await stripe.paymentIntents.create({
@@ -255,7 +254,6 @@ async function run() {
                     "card"
                 ],
             });
-
             res.send({
                 clientSecret: paymentIntent.client_secret,
             });
