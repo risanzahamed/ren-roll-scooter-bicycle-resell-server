@@ -3,7 +3,7 @@ const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 
-const stripe = require("stripe")("sk_test_51M5vi0CWY41z4WgMZuFcRTVhB7lmsHo7mVZ4HyvVpn7tCZIkG8M0XlbpFpGIZdNmc1JEMAzUz6HqEAAdaxwetoFL00kgJNeblU");
+const stripe = require("stripe")("sk_test_51MjjX9BnHYhj3RHAEenWA3QvQIlmNFs8tr7JOFKwhMGxIheV3WfsqSdZJMg0souWSx90jjo3kYNCQKGQOoXrG7F500krN2BANI");
 
 
 // const jwt = require('jsonwebtoken');
