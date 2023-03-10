@@ -33,15 +33,11 @@ async function run() {
         const newArrivals= client.db('rentRoll').collection('newArrivals')
         const productbyCategory= client.db('rentRoll').collection('allProductByCategory')
         const bestSellingProduct= client.db('rentRoll').collection('bestSellingProduct')
-        // const carDetailsByCategory = client.db('rentRoll').collection('ourcardd')
         const productAddToCartCollection = client.db('rentRoll').collection('productCart')
         const productflagedCollection = client.db('rentRoll').collection('flagedItems')
         const usersCollection = client.db('rentRoll').collection('users')
-        // const sellerCollection = client.db('rentRoll').collection('seller')
-        // const customerCollection = client.db('rentRoll').collection('customer')
         const paymentCollection = client.db('rentRoll').collection('payment')
         const addProductCollection = client.db('rentRoll').collection('addProduct')
-        // const advertiseCollection = client.db('rentRoll').collection('advertiseItem')
 
 
 
@@ -49,7 +45,7 @@ async function run() {
             const payment = req.body
             const result = paymentCollection.insertOne(payment)
             const _id = payment.bookingId
-            const filter = {_id : ObjectId(_id)}
+            const filter = {_id : new ObjectId(_id)}
             const updatedDoc = {
                 $set:{
                     paid: true,
