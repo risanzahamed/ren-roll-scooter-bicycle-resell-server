@@ -5,8 +5,6 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
-
-
 // const jwt = require('jsonwebtoken');
 const app = express()
 const port = process.env.PORT || 5000
